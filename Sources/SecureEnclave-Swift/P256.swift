@@ -1,7 +1,6 @@
 import Foundation
 import CryptoKit
 
-
 /// A interface to a secure enclave backed NIST-P256 key
 @objc public final class P256: NSObject {
     /// Generates a new secure enclave bound, sealed private key
