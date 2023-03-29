@@ -1,0 +1,10 @@
+# Ignore macOS clutter
+.DS_Store
+
+# Ignore build artifacts
+/.build
+/.swiftpm
+
+# Ignore IDE configs
+/.vscode
+/.swiftpm
