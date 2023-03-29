@@ -50,31 +50,31 @@ typedef enum {
      *
      * @warning All permissions are exclusive, you MUST NOT `or` them etc. – only use them as-is
      */
-    sep_permission_needs_unlock_once = 1,
+    sep_permissions_needs_unlock_once = 1,
     /**
      * @brief The device must be currently unlocked to access a key
      *
      * @warning All permissions are exclusive, you MUST NOT `or` them etc. – only use them as-is
      */
-    sep_permission_needs_unlock = 2,
+    sep_permissions_needs_unlock = 2,
     /**
      * @brief The user must authenticate to the device for each key usage
      *
      * @warning All permissions are exclusive, you MUST NOT `or` them etc. – only use them as-is
      */
-    sep_permission_needs_interactive_auth = 3,
+    sep_permissions_needs_interactive_auth = 3,
     /**
      * @brief Needs biometric authentication for each key usage
      *
      * @warning All permissions are exclusive, you MUST NOT `or` them etc. – only use them as-is
      */
-    sep_permission_needs_biometry = 4,
+    sep_permissions_needs_biometry = 4,
     /**
      * @brief Needs the same biometric authentication that has been enrolled when the key was created for each key usage
      *
      * @warning All permissions are exclusive, you MUST NOT `or` them etc. – only use them as-is
      */
-    sep_permission_needs_same_biometry = 5
+    sep_permissions_needs_same_biometry = 5
 } sep_permissions_t;
 
 

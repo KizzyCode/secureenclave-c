@@ -39,7 +39,7 @@ void ecdsa_example() {
     
     // Create key
     sep_buf_t p256 = { 0 };
-    int result = sep_p256_generate(sep_permission_needs_biometry, &p256, &error);
+    int result = sep_p256_generate(sep_permissions_needs_biometry, &p256, &error);
     check_result(result, &error);
     
     // Get pubkey
@@ -87,7 +87,7 @@ void ecdh_example() {
     
     // Create key
     sep_buf_t p256 = { 0 };
-    int result = sep_p256_generate(sep_permission_needs_biometry, &p256, &error);
+    int result = sep_p256_generate(sep_permissions_needs_biometry, &p256, &error);
     check_result(result, &error);
     
     // Create pubkey
