@@ -12,8 +12,12 @@ let package = Package(
     products: [
         // C API to CryptoKit secure enclave
         .library(
-            name: "SecureEnclave",
+            name: "SecureEnclave-Static",
             type: .static,
+            targets: ["SecureEnclave"]),
+        .library(
+            name: "SecureEnclave-Dylib",
+            type: .dynamic,
             targets: ["SecureEnclave"]),
         // Example executable
         .executable(
