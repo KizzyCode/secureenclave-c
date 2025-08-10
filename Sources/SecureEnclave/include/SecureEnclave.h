@@ -16,7 +16,7 @@ typedef struct {
     /**
      * @brief The buffer
      */
-    uint8_t bytes[4096];
+    uint8_t bytes[2040];
 } sep_buf_t;
 
 
