@@ -1,23 +1,6 @@
 #import "Utils.h"
 
 
-@implementation NSError (Utils)
-
-- (void)copyToSepError:(nonnull sep_error_t*)seperror {
-    // Get location
-    NSDictionary<NSErrorUserInfoKey,id>* userInfo = [self userInfo];
-    NSString* description = [userInfo valueForKey:NSLocalizedDescriptionKey];
-    NSString* location = [userInfo valueForKey:NSFilePathErrorKey];
-    
-    // Write info into C error struct
-    seperror->code = [self code];
-    [[description dataWithNullUsingEncoding:NSUTF8StringEncoding allowLossyConversion:true] copyToSepBuf:&seperror->description];
-    [[location dataWithNullUsingEncoding:NSUTF8StringEncoding allowLossyConversion:true] copyToSepBuf:&seperror->location];
-}
-
-@end
-
-
 @implementation NSData (Utils)
 
 - (instancetype)initWithSepBuf:(nonnull const sep_buf_t*)sepbuf {
@@ -41,6 +24,23 @@
     // Copy the data
     memcpy(sepbuf->bytes, [self bytes], [self length]);
     sepbuf->len = [self length];
+}
+
+@end
+
+
+@implementation NSError (Utils)
+
+- (void)copyToSepBuf:(nonnull sep_buf_t*)sepbuf {
+    // Create error string
+    NSDictionary<NSErrorUserInfoKey,id>* userInfo = [self userInfo];
+    NSMutableString* error = [[NSMutableString alloc] init];
+    [error appendFormat:@"%@", [userInfo valueForKey:NSLocalizedDescriptionKey]];
+    [error appendFormat:@" (code: %ld,", [self code]];
+    [error appendFormat:@" at %@)", [userInfo valueForKey:NSFilePathErrorKey]];
+    
+    // Write info into C error struct
+    [[error dataWithNullUsingEncoding:NSUTF8StringEncoding allowLossyConversion:true] copyToSepBuf:sepbuf];
 }
 
 @end

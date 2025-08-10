@@ -21,25 +21,6 @@ typedef struct {
 
 
 /**
- * @brief A secure enclave related error
- */
-typedef struct {
-    /**
-     * @brief The error code
-     */
-    uint64_t code;
-    /**
-     * @brief The error description as `\0`-terminated string
-     */
-    sep_buf_t description;
-    /**
-     * @brief The error location as `\0`-terminated string
-     */
-    sep_buf_t location;
-} sep_error_t;
-
-
-/**
  * @brief The required permissions to use a key
  *
  * @warning All permissions are exclusive, you MUST NOT `or` them etc. – only use them as-is
@@ -86,7 +67,7 @@ typedef enum {
  * @param error A buffer to write potential error information into
  * @return int `0` on success or `-1` on error
  */
-int sep_p256_generate(sep_permissions_t permissions, sep_buf_t* key, sep_error_t* error);
+int sep_p256_generate(sep_permissions_t permissions, sep_buf_t* key, sep_buf_t* error);
 /**
  * @brief Gets the associated public key in uncompressed SEC 1 representation (`0x04 || x || y`)
  *
@@ -95,7 +76,7 @@ int sep_p256_generate(sep_permissions_t permissions, sep_buf_t* key, sep_error_t
  * @param error A buffer to write potential error information into
  * @return int `0` on success or `-1` on error
  */
-int sep_p256_publickey(const sep_buf_t* key, sep_buf_t* publickey, sep_error_t* error);
+int sep_p256_publickey(const sep_buf_t* key, sep_buf_t* publickey, sep_buf_t* error);
 /**
  * @brief Derives an ECDH shared secret in uncompressed SEC 1 representation (`0x04 || x || y`)
  *
@@ -105,7 +86,7 @@ int sep_p256_publickey(const sep_buf_t* key, sep_buf_t* publickey, sep_error_t* 
  * @param error A buffer to write potential error information into
  * @return int `0` on success or `-1` on error
  */
-int sep_p256_keyexchange(const sep_buf_t* key, const sep_buf_t* other, sep_buf_t* dhsecret, sep_error_t* error);
+int sep_p256_keyexchange(const sep_buf_t* key, const sep_buf_t* other, sep_buf_t* dhsecret, sep_buf_t* error);
 /**
  * @brief Generates an ECDSA signature for the given hash value in it's raw representation (`r || s`,
  *        see https://tools.ietf.org/html/rfc4754)
@@ -116,7 +97,7 @@ int sep_p256_keyexchange(const sep_buf_t* key, const sep_buf_t* other, sep_buf_t
  * @param error A buffer to write potential error information into
  * @return int `0` on success or `-1` on error
  */
-int sep_p256_signhash(const sep_buf_t* key, const sep_buf_t* hash, sep_buf_t* ecdsasig, sep_error_t* error);
+int sep_p256_signhash(const sep_buf_t* key, const sep_buf_t* hash, sep_buf_t* ecdsasig, sep_buf_t* error);
 
 
 #endif /* SecureEnclave_h */

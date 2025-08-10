@@ -26,11 +26,11 @@
 @interface NSError (Utils)
 
 /**
- * @brief Copies `self` into the given `seperror`
+ * @brief Copies `self` into the given `sepbuf`
  * 
- * @param seperror The `sep_error_t` to copy `self` into
+ * @param sepbuf The `sep_buf_t` to copy `self` into
  */
-- (void)copyToSepError:(nonnull sep_error_t*)seperror;
+- (void)copyToSepBuf:(nonnull sep_buf_t*)sepbuf;
 
 @end
 

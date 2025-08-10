@@ -22,9 +22,9 @@ void print_buf(const sep_buf_t* buffer) {
  * @param result The result code to check
  * @param error The error struct to print in case of a non-zero result code
  */
-void check_result(int result, const sep_error_t* error) {
+void check_result(int result, const sep_buf_t* error) {
     if (result != 0) {
-        printf("%s at %s [%llu]\n", error->description.bytes, error->location.bytes, error->code);
+        printf("%s\n", error->bytes);
         exit(1);
     }
 }
@@ -35,7 +35,7 @@ void check_result(int result, const sep_error_t* error) {
  *        hash and the associated public key. Requires biometric authentication.
  */
 void ecdsa_example() {
-    sep_error_t error = { 0 };
+    sep_buf_t error = { 0 };
     
     // Create key
     sep_buf_t p256 = { 0 };
@@ -83,7 +83,7 @@ void ecdsa_example() {
  *        it together with the associated public key. Requires biometric authentication.
  */
 void ecdh_example() {
-    sep_error_t error = { 0 };
+    sep_buf_t error = { 0 };
     
     // Create key
     sep_buf_t p256 = { 0 };
